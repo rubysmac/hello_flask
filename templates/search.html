@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Scraper</title>
+    <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"
+    >
+</head>
+<body>
+    <main class="container">
+        <hgroup>
+        <h1>Search Results for "{{keyword}}"</h1> 
+        <a href="/export?keyword={{keyword}}" target="_blank">Export to File:</a>
+    </hgroup>
+        <figure>
+        <table role="striped">
+           <thead>
+            <tr> <!---table row-->
+                <th>Position</th>
+                <th>Company</th>
+                <th>Link</th>
+            </tr>
+           </thead> 
+           <tbody>
+            {% for job in jobs %} <!---파이썬 코드 실행 포맷-->
+            <tr>
+                <td>{{job.title}}</td>
+                <td>{{job.company_name}}</td>
+                <td><a href="{{job.link}}" target="_blank">Apply &rarr;</a></td>
+                <!---job.link: job[link], target="_blank": open in new tab-->
+            </tr> 
+        {% endfor %}
+           </tbody>
+        </table>
+        </figure>
+    </main>
+</body>
+</html>
